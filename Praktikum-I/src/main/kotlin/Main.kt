@@ -32,11 +32,12 @@ fun main() {
         println(increasingSensor.getTemperature())
     }
 
+    lineBreaks()
 
     // Aufgabe 2 Strategien verwenden
 
     // b)
-    // Strategy.Thermometer mit erster Strategie initialisieren
+    // Strategy. Thermometer mit erster Strategie initialisieren
     println("Aufgabe 2")
     println("b.)")
     val thermometer = Thermometer(sensor = RandomSensor(2.0, 8.0))
@@ -47,7 +48,13 @@ fun main() {
     println("c.)")
     thermometer.setSensor(IncreasingSensor(startTemperature = 15.0))  // Strategie wechseln
     thermometer.measure(10)
-    println()
+
+
+    // e)
+    // Single-Responsibility-Principle
+    // Open-Closed-Principle
+
+    lineBreaks()
 
 
     // Aufgabe 3 Sensoren dekorieren
@@ -70,8 +77,8 @@ fun main() {
     sensor3.getTemperature()
     sensor3.getTemperature()
     sensor3.getTemperature()
-    println()
 
+    lineBreaks()
 
     // c)
     println("c.)")
@@ -83,6 +90,33 @@ fun main() {
     val t2 = Thermometer(RoundValues(SensorLogger(RandomSensor(2.0, 5.0))))
     t2.measure(2)
     println()
+
+    // d)
+
+    /*
+    * -> Flexibilität, Verhalten eines Objekts zur Laufzeit zu ändern, ohne es zu modifizieren.
+    * → neue Funktionen können hinzugefügt oder vorhandene Funktionen geändert werden,
+    * indem sie mit dem Decorator gewrappet werden
+    * */
+
+    // e)
+    /*
+    * Decorator → ändert das Verhalten eines Objekts, durch Wrapping und Erweiterung
+    * Strategie → ersetzt eine bestimmte Funktion in einer Klasse, um verschiedene Algorithmen bereitzustellen
+    *
+    * Decorator → fügt dem Objekt neue Funktionen hin zu
+    * Strategie → Tauscht die Implementierung einer vorhandenen Funktion aus
+    * */
+
+
+    // f)
+    /*
+    * Single-Responsibility
+    * Open-Closed
+    * Composition over inheritance
+    * */
+
+    lineBreaks()
 
     // Aufgabe 4 Beobachten des Thermometers
     println("Aufgabe 4")
@@ -98,9 +132,33 @@ fun main() {
     )
     val heatingSystemObserver = HeatingSystemObserver(
         upperLimit = 23.0,
-         lowerLimit = 19.0
+        lowerLimit = 19.0
     )
     thermometer1.addObserver(alertObserver)
     thermometer1.addObserver(heatingSystemObserver)
     thermometer1.measure(20)
+}
+
+
+private fun lineBreaks(): Unit {
+    repeat(3) {
+        println()
+    }
+
+
+    // d)
+    /*
+    *  Beobachter ermöglicht Objekten, auf Änderungen des Zustands anderer Objekte zu reagieren,
+    * ohne dass eine direkte Abhängigkeit zwischen ihnen besteht
+    *
+    * Alternative: direkte Abhängigkeit zwischen dem Thermometer und den interessierten Objekten
+    * */
+
+
+    // e)
+    /*
+    * Single-Responsibility
+    * Open-Closed
+    * Composition over inheritance
+    * */
 }
