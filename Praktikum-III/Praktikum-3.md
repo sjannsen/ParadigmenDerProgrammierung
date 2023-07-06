@@ -44,8 +44,8 @@ istVorfahre(P1, P2) :-
 % d)
 
 sindGeschwister(P1, P2) :-
-    elternKind(E, P1),
-    elternKind(E, P2),
+    elternKind(Eltern, P1),
+    elternKind(Eltern, P2),
     P1 \= P2.
 
 
@@ -68,14 +68,12 @@ weiblich(jackie).
 
 
 istSchwesterVon(P1, P2) :-
-    elternKind(E, P1),
-    elternKind(E, P2),
+   	sindGeschwister(P1, P2),
     weiblich(P1),
     P1 \= P2.
 
 istBruderVon(P1, P2) :-
-    elternKind(E, P1),
-    elternKind(E, P2),
+    sindGeschwister(P1, P2),
     maennlich(P1),
     P1 \= P2.
 
