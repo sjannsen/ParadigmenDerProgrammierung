@@ -1,3 +1,100 @@
+% 1 Fakten, Regeln und Anfragen
+
+
+% a)
+elternKind(homer, bart).
+elternKind(homer, lisa).
+elternKind(homer, maggie).
+
+elternKind(marge, bart).
+elternKind(marge, lisa).
+elternKind(marge, maggie).
+
+elternKind(mona, homer).
+elternKind(mona, herb).
+
+elternKind(abraham, homer).
+elternKind(abraham, herb).
+
+elternKind(clancy, marge).
+elternKind(clancy, patty).
+elternKind(clancy, selma).
+
+elternKind(jackie, marge).
+elternKind(jackie, patty).
+elternKind(jackie, selma).
+
+elternKind(selma, ling).
+
+
+% b)
+istVorfahre(P1, P2) :-
+    elternKind(P1, P2).
+
+% c)
+
+istVorfahre(P1, P2) :-
+    elternKind(P1, P2).
+
+istVorfahre(P1, P2) :-
+    elternKind(P1, X),
+    istVorfahre(X, P2).
+
+
+% d)
+
+sindGeschwister(P1, P2) :-
+    elternKind(E, P1),
+    elternKind(E, P2),
+    P1 \= P2.
+
+
+% e)
+
+% Fakten über das Geschlecht der Personen
+maennlich(homer).
+maennlich(bart).
+maennlich(herb).
+maennlich(abraham).
+maennlich(clancy).
+
+weiblich(mona).
+weiblich(lisa).
+weiblich(maggie).
+weiblich(ling).
+weiblich(selma).
+weiblich(patty).
+weiblich(jackie).
+
+
+istSchwesterVon(P1, P2) :-
+    elternKind(E, P1),
+    elternKind(E, P2),
+    weiblich(P1),
+    P1 \= P2.
+
+istBruderVon(P1, P2) :-
+    elternKind(E, P1),
+    elternKind(E, P2),
+    maennlich(P1),
+    P1 \= P2.
+
+
+% f)
+
+% sindGeschwister(P1, P2) :-
+%     elternKind(E, P1),
+%     elternKind(E, P2),
+%     P1 \= P2.
+
+% ?- sindGeschwister(homer, Wer)
+
+% sindGeschwister(homer, Wer) :-
+%     elternKind(E, homer), => abraham, mona
+%     elternKind(E, Wer), => herb
+%     homer \= herb. => true
+
+
 
 
 % 2 Arbeiten mit Listen
